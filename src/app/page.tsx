@@ -1,69 +1,57 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState } from 'react';
+import Navbar from '../components/Navbar';
+import SafetyAuditWorkbench from '../components/SafetyAuditWorkbench';
+import TbmReportModal from '../components/TbmReportModal';
+import RiskAssessmentDocModal from '../components/RiskAssessmentDocModal';
+import PricingModal from '../components/PricingModal';
+import { INITIAL_WORKPLACES } from '../lib/mock-workplaces';
+import { TbmMeeting } from '../lib/types';
 
 export default function Home() {
+  const [isPricingOpen, setIsPricingOpen] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [activeTbm, setActiveTbm] = useState<TbmMeeting | null>(null);
+
+  const selectedWorkplace = INITIAL_WORKPLACES[0];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen bg-slate-100/70 text-slate-900 flex flex-col">
+      <Navbar
+        onOpenPricing={() => setIsPricingOpen(true)}
+        onOpenReport={() => setIsReportOpen(true)}
+      />
+
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <SafetyAuditWorkbench
+          workplaces={INITIAL_WORKPLACES}
+          onOpenReport={() => setIsReportOpen(true)}
+          onOpenTbm={(meeting) => setActiveTbm(meeting)}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 K-SafetyGuard AI. 고용노동부 KRAS 3단계 표준 위험성평가 및 중대재해처벌법 컴플라이언스 솔루션.</p>
+        <p className="mt-1 text-slate-400">
+          근거 법령: 산업안전보건법 제36조, 중대재해 처벌 등에 관한 법률 제4조 제1항 제3호 및 동법 시행령 제4조
+        </p>
+      </footer>
+
+      {/* Modals */}
+      <PricingModal isOpen={isPricingOpen} onClose={() => setIsPricingOpen(false)} />
+      <RiskAssessmentDocModal
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        workplace={selectedWorkplace}
+      />
+      <TbmReportModal
+        isOpen={Boolean(activeTbm)}
+        onClose={() => setActiveTbm(null)}
+        workplace={selectedWorkplace}
+        meeting={activeTbm}
+      />
     </div>
   );
 }

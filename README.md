@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# K-SafetyGuard AI (K-안전가드) 👷‍♂️🛡️
 
-## Getting Started
+> **대한민국 50인 미만 사업장 중대재해처벌법 전면 시행 대응: 고용노동부 KRAS 3단계 표준 위험성평가 & 모바일 TBM 일지 자동 생성 AI SaaS**  
+> 전담 안전관리자를 고용하기 어려운 전국 83만 개 제조·건설·물류 중소기업을 위해, 작업 현장 사진/공정 텍스트 1줄만으로 고용노동부 지침(고시 제2023-19호)에 완벽 부합하는 **KRAS 3단계 표준 위험성평가표**, **작업 전 10분 안전점검회의(TBM) 모바일 전자서명 일지**, 그리고 **근로감독관 불시 점검 대비 A4 공인 제출 보고서**를 원클릭으로 생성합니다.
 
-First, run the development server:
+---
+
+## 🌟 왜 K-SafetyGuard인가? (Problem & Solution)
+
+1. **중대재해처벌법 50인 미만 사업장 전면 시행 (83만 개 사업장 적용)**
+   - 2024~2026년부터 5인 이상 모든 중소 제조업, 건설현장, 물류창고, 정비업소로 중처법이 확대 적용되었습니다.
+   - 현장에서 사망 등 중대재해 발생 시 **대표이사(사업주)는 1년 이상의 징역 또는 10억 원 이하의 벌금형**에 처해집니다.
+2. **대표이사를 살리는 유일한 법적 방패: "실질적 위험성평가"와 "TBM 일지"**
+   - 법원 및 검찰 수사의 핵심 쟁점은 "형식적인 서류 복사(표절)"가 아닌 **"근로자가 참여한 실질적인 유해·위험요인 발굴과 일일 TBM(작업 전 회의) 실시 여부"**입니다.
+   - 전담 안전관리자(연봉 5,000만~7,000만 원)를 채용할 여력이 없는 중소기업은 서류 작성을 포기하거나 외주 컨설팅에 수백만 원을 낭비하고 있습니다.
+3. **K-SafetyGuard AI의 완벽한 규제 해자(Regulatory Moat)**
+   - **고용노동부 표준 KRAS 3단계(상·중·하)** 기법과 빈도·강도법 탑재
+   - 6대 중점 재해(추락, 끼임, 충돌, 감전, 화재/폭발, 질식)별 **산업안전보건기준에 관한 규칙 제38조~제40조 법령 자동 매핑**
+   - 3대 안전조치(공학적 대책, 관리적 대책, 개인보호구) 표준 매뉴얼 제공
+   - 모바일 근로자 전자서명이 포함된 TBM 일지를 3년간 전산 보존하여 법적 면책 증빙 완성
+
+---
+
+## 🚀 핵심 기능 (Core Features)
+
+- **사업장 중대재해 CEO 처벌 리스크 지수 실시간 모니터링**:
+  - 미개선 고위험 요인 수, 최근 평가 주기, 안전보건 16대 의무사항 준수율을 종합한 0~100 리스크 스코어카드
+- **현장 작업 기반 KRAS 3단계 위험성평가 자동 생성 엔진 (`kras-safety-engine.ts`)**:
+  - 현장 작업명 및 위험 유형 선택 시 산안법 법령 조항 및 3단계 감소 대책 자동 생성
+  - 위험도 개선 전(상/중) -> 개선 후(하) 감축 프로세스 가시화
+- **작업 전 10분 TBM(Tool Box Meeting) 모바일 전자서명 일지**:
+  - 금일 중점 위험 포인트 전파 및 안전 구호 생성
+  - 참석 근로자별 실시간 전자서명 및 3년 법정 의무 보존
+- **고용노동부 근로감독관 불시 점검 대비 표준 A4 보고서 출력**:
+  - 노동부 표준 양식(Form No. 2026-KRAS) 규격 준수
+  - 대표이사 직인 생략 서명란 및 감리 제출용 인쇄/PDF 저장 지원
+- **중대재해처벌법 16대 법적 의무사항 상시 진단**:
+  - 안전보건 목표 게시, 협력사 적격성 심사, 안전예산 집행 증빙 체크리스트
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+- **Framework**: Next.js 16 (App Router), React 19
+- **Styling**: Tailwind CSS 4, Lucide React (고신뢰도 컴플라이언스 엔터프라이즈 테마)
+- **Language**: TypeScript (Strict Type Safety)
+- **Compliance Engine**: 고용노동부 고시 제2023-19호 및 산안법 시행규칙 기준 알고리즘
+
+---
+
+## 💻 로컬 실행 방법 (Quick Start)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 1. 의존성 설치
+pnpm install
+
+# 2. 개발 서버 구동
 pnpm dev
-# or
-bun dev
+
+# 3. 브라우저 접속
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏢 비즈니스 모델 & 타깃 고객
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **상시근로자 5인~49인 중소 제조업 (금속, 기계가공, 플라스틱, 화학공장 등)**
+2. **전문건설업체 및 현장 하도급 시공사 (철근콘크리트, 비계구조물, 전기, 소방공사 등)**
+3. **물류 풀필먼트 및 운송 보관 창고**
+4. **월 149,000원 ~ 290,000원 B2B 구독 모델 (공인노무사/안전지도사 분기 감수 패키지 연계)**
